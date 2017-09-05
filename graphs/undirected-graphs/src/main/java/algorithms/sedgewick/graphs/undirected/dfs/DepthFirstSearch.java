@@ -1,17 +1,17 @@
 package algorithms.sedgewick.graphs.undirected.dfs;
 
 import algorithms.sedgewick.graphs.api.Graph;
-import algorithms.sedgewick.graphs.api.Search;
+import algorithms.sedgewick.graphs.api.SingleSourceGraphSearch;
 import algorithms.sedgewick.graphs.undirected.UndirectedGraph;
 
 /**
- * DepthFirst Implementation of the {@link Search} API to find connected vertices
+ * DepthFirst Implementation of the {@link SingleSourceGraphSearch} API to find connected vertices
  * for a given source vertex in a {@link Graph}
  * 
  * @author Vikram Kommaraju
  *
  */
-public class DepthFirstSearch extends Search {
+public class DepthFirstSearch extends SingleSourceGraphSearch {
 
 	private boolean[] markedVertices;
 	private int count;
@@ -45,7 +45,7 @@ public class DepthFirstSearch extends Search {
 		Graph g = UndirectedGraph.createSmallGraph();
 		System.out.println(g);
 		int source = 0;
-		Search s = new DepthFirstSearch(g, source);
+		SingleSourceGraphSearch s = new DepthFirstSearch(g, source);
 		System.out.println(s.marked(1));
 		System.out.println(s.count());
 	}

@@ -7,7 +7,7 @@ package algorithms.sedgewick.graphs.api;
  * @author Vikram Kommaraju
  *
  */
-public abstract class Search {
+public abstract class SingleSourceGraphSearch {
 
 	protected Graph g;
 	protected int source;
@@ -15,7 +15,7 @@ public abstract class Search {
 	/**
 	 * Must pass in a reference to a {@link Graph} and a source vertex
 	 */
-	protected Search(Graph g, int source) {
+	protected SingleSourceGraphSearch(Graph g, int source) {
 		this.g = g;
 		this.source = source;
 	}

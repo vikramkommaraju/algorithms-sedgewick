@@ -1,30 +1,29 @@
-package algorithms.sedgewick.graphs.undirected.symbol;
+package algorithms.sedgewick.graphs.directed.dfs;
 
 import java.util.HashMap;
 import java.util.List;
 
+import algorithms.sedgewick.graphs.api.Digraph;
 import algorithms.sedgewick.graphs.api.Graph;
 import algorithms.sedgewick.graphs.api.ISymbolGraph;
-import algorithms.sedgewick.graphs.undirected.UndirectedGraph;
+import algorithms.sedgewick.graphs.directed.DirectedGraph;
 import algorithms.sedgewick.utils.FileUtils;
 
 /**
- * Implementation class of the {@link ISymbolGraph} API
+ * Implementation class of the {@link ISymbolGraph} API using a {@link DirectedGraph}
  * 
  * @author Vikram Kommaraju
  */
-public class SymbolGraph implements ISymbolGraph {
+public class SymbolDigraph implements ISymbolGraph {
 
-	private Graph g;
+	private Digraph g;
 	private HashMap<String, Integer> keyToIndexMap;
 	private String keys[];
 	
-	private static final String ROUTES_FILE = "src/main/resources/routes.txt";
-	private static final String ROUTES_FILE_SEPARATOR = " ";	
-	private static final String MOVIES_FILE = "src/main/resources/movies.txt";
-	private static final String MOVIES_FILE_SEPARATOR = "/";	
-	
-	private SymbolGraph(String inputFilePath, String separator) throws Exception {
+	private static final String JOBS_FILE = "src/main/resources/jobs.txt";
+	private static final String JOBS_FILE_SEPARATOR = "/";	
+
+	private SymbolDigraph(String inputFilePath, String separator) throws Exception {
 		keyToIndexMap = new HashMap<String, Integer>();
 		List<String> allLinesFromFile = FileUtils.readAllLines(inputFilePath);
 		buildKeyToIndexMap(separator, allLinesFromFile);
@@ -38,7 +37,7 @@ public class SymbolGraph implements ISymbolGraph {
 	 * vertex and other vertices in that line
 	 */
 	private void createGraphAndAddEdges(String separator, List<String> allLinesFromFile) {
-		this.g = new UndirectedGraph(keyToIndexMap.size());
+		this.g = new DirectedGraph(keyToIndexMap.size());
 		for(String line : allLinesFromFile) {
 			
 			String[] keys = line.split(separator);
@@ -79,14 +78,9 @@ public class SymbolGraph implements ISymbolGraph {
 		}
 	}
 	
-	public static SymbolGraph createRoutesGraph() throws Exception {
-		return new SymbolGraph(ROUTES_FILE, ROUTES_FILE_SEPARATOR);
-	}
-	
-	public static SymbolGraph createMoviesGraph() throws Exception {
-		return new SymbolGraph(MOVIES_FILE, MOVIES_FILE_SEPARATOR);
-	}
-	
+	public static SymbolDigraph createJobsGraph() throws Exception {
+		return new SymbolDigraph(JOBS_FILE, JOBS_FILE_SEPARATOR);
+	}	
 	
 	public boolean contains(String key) {
 		return keyToIndexMap.containsKey(key);
@@ -100,7 +94,7 @@ public class SymbolGraph implements ISymbolGraph {
 		return keys[v];
 	}
 
-	public Graph G() {
+	public Digraph G() {
 		return g;
 	}
 	
@@ -119,20 +113,17 @@ public class SymbolGraph implements ISymbolGraph {
 	}
 
 	public static void main(String[] args) throws Exception {
-		ISymbolGraph symGraph = SymbolGraph.createRoutesGraph();
+		ISymbolGraph symGraph = SymbolDigraph.createJobsGraph();
 		System.out.println("Graph is : " + symGraph);
 		System.out.println("###");
-		ISymbolGraph symGraph2 = SymbolGraph.createMoviesGraph();
 		String movieName = "Bacon, Kevin";
-		int indexOfMovieName = symGraph2.index(movieName);
 		
-		Iterable<Integer> performerIndices = symGraph2.G().adj(indexOfMovieName);
-		for(int w : performerIndices) {
-			String performerName = symGraph2.name(w);
-			System.out.print(performerName + "\n");
-		}
+//		Iterable<Integer> performerIndices = symGraph.G().adj(indexOfMovieName);
+//		for(int w : performerIndices) {
+//			String performerName = symGraph2.name(w);
+//			System.out.print(performerName + "\n");
+//		}
 		System.out.println();
 		
 	}
-
 }

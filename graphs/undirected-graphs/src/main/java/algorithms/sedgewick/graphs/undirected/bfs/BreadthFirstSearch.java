@@ -4,17 +4,17 @@ import java.util.ArrayDeque;
 import java.util.Queue;
 
 import algorithms.sedgewick.graphs.api.Graph;
-import algorithms.sedgewick.graphs.api.Search;
+import algorithms.sedgewick.graphs.api.SingleSourceGraphSearch;
 import algorithms.sedgewick.graphs.undirected.UndirectedGraph;
 
 /**
- * BreadthFirst Implementation of the {@link Search} API to find connected vertices
+ * BreadthFirst Implementation of the {@link SingleSourceGraphSearch} API to find connected vertices
  * for a given source vertex in a {@link Graph}
  * 
  * @author Vikram Kommaraju
  *
  */
-public class BreadthFirstSearch extends Search {
+public class BreadthFirstSearch extends SingleSourceGraphSearch {
 	boolean marked[];
 	int count;
 
@@ -61,7 +61,7 @@ public class BreadthFirstSearch extends Search {
 		System.out.println(g);
 		int source = 0;
 		int sink = 3;
-		Search s = new BreadthFirstSearch(g, source);
+		SingleSourceGraphSearch s = new BreadthFirstSearch(g, source);
 		System.out.println(s.marked(sink));
 		System.out.println(s.count());
 	}
