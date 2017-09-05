@@ -1,7 +1,12 @@
 package algorithms.sedgewick.graphs.directed.dfs;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+
 import algorithms.sedgewick.fundamentals.api.ConnectedComponent;
 import algorithms.sedgewick.graphs.api.Digraph;
+import algorithms.sedgewick.graphs.directed.DirectedGraph;
 
 /**
  * Implementation of the {@link ConnectedComponent} API to determine "Strongly"
@@ -36,10 +41,10 @@ public class KosarajuStronglyCC implements ConnectedComponent {
 		count = 0;
 		Digraph<Integer> reversedDigraph = g.reverse();
 		DepthFirstOrder dfsOrder = new DepthFirstOrder(reversedDigraph);
-		
-		for(int v : dfsOrder.reversePost()) {
-			if(!marked[v]) {
-				dfs(g, v);
+		;
+		for(int s : dfsOrder.reversePost()) {
+			if(!marked[s]) {
+				dfs(g, s);
 				count++;
 			}
 		}
@@ -72,4 +77,21 @@ public class KosarajuStronglyCC implements ConnectedComponent {
 		return id[v];
 	}
 
+	public static void main(String[] args) throws Exception {
+		Digraph<Integer> g = (Digraph<Integer>) DirectedGraph.createSmallGraph();
+		KosarajuStronglyCC cc = new KosarajuStronglyCC(g);
+		int numberOfComponents = cc.count();
+		Set<Integer>[] components = new HashSet[numberOfComponents];
+		for(int i=0; i<numberOfComponents; i++) {
+			components[i] = new HashSet<Integer>();
+		}
+		for(int v=0; v<g.V(); v++) {
+			int componentOfV = cc.id(v);
+			components[componentOfV].add(v);
+		}
+		for(int i=0; i<numberOfComponents; i++) {
+			System.out.println("Component: " + (i+1));
+			System.out.println(components[i]);
+		}
+	}
 }
