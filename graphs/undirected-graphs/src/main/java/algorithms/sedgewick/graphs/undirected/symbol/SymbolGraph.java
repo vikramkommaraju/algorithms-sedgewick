@@ -15,7 +15,7 @@ import algorithms.sedgewick.utils.FileUtils;
  */
 public class SymbolGraph implements ISymbolGraph {
 
-	private Graph g;
+	private Graph<Integer> g;
 	private HashMap<String, Integer> keyToIndexMap;
 	private String keys[];
 	
@@ -110,8 +110,7 @@ public class SymbolGraph implements ISymbolGraph {
 		str.append(g.V() + " vertices, " + g.E() + " edges");
 		for(int i=0; i<g.V(); i++) {
 			str.append("\n" + keys[i]+": ");
-			Iterable<Integer> adjList = g.adj(i);
-			for(int w : adjList) {
+			for(int w : g.adj(i)) {
 				str.append(keys[w] + " ");
 			}
 		}

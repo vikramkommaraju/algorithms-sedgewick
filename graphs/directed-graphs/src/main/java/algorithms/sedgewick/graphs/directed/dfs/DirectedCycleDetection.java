@@ -32,11 +32,10 @@ public class DirectedCycleDetection {
 		}
 	}
 	
-	private void dfs(Digraph g, int v) {
+	private void dfs(Digraph<Integer> g, int v) {
 		marked[v] = true;
 		onStack[v] = true;
-		Iterable<Integer> adjList = g.adj(v);
-		for(int w : adjList) {
+		for(int w : g.adj(v)) {
 			if(!marked[w]) {
 				edgeTo[w] = v;
 				dfs(g, w);

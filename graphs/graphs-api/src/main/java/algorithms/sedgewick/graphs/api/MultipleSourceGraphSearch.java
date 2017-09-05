@@ -11,16 +11,16 @@ import java.util.List;
  */
 public abstract class MultipleSourceGraphSearch {
 	
-	protected Graph g;
+	protected Graph<Integer> g;
 	protected int singleSource;
 	protected List<Integer> multipleSources;
 
-	protected MultipleSourceGraphSearch(Graph g, int singleSource) {
+	protected MultipleSourceGraphSearch(Graph<Integer> g, int singleSource) {
 		this.g= g;
 		this.singleSource = singleSource;
 	}
 	
-	protected MultipleSourceGraphSearch(Graph g, List<Integer> multipleSources) {
+	protected MultipleSourceGraphSearch(Graph<Integer> g, List<Integer> multipleSources) {
 		this.g= g;
 		this.multipleSources = multipleSources;
 	}

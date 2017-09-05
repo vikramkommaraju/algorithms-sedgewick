@@ -15,12 +15,12 @@ import algorithms.sedgewick.graphs.undirected.UndirectedGraph;
  */
 public class DepthFirstSearchCC implements ConnectedComponent {
 
-	private Graph g;
+	private Graph<Integer> g;
 	private boolean[] markedVertices;
 	private int[] id;
 	private int count;
 	
-	DepthFirstSearchCC(Graph g) {
+	DepthFirstSearchCC(Graph<Integer> g) {
 		this.g = g;
 		markedVertices = new boolean[g.V()];
 		id = new int[g.V()];
@@ -45,12 +45,11 @@ public class DepthFirstSearchCC implements ConnectedComponent {
 		return id[v];
 	}
 
-	private void dfs(Graph g, int v) {
+	private void dfs(Graph<Integer> g, int v) {
 		markedVertices[v] = true;
 		id[v] = count;
 		
-		Iterable<Integer> adjList = g.adj(v);
-		for(int w : adjList) {
+		for(int w : g.adj(v)) {
 			if(!marked(w)) {
 				dfs(g, w);
 			}
@@ -63,7 +62,7 @@ public class DepthFirstSearchCC implements ConnectedComponent {
 	
 	
 	public static void main(String[] args) throws Exception {
-		Graph g = UndirectedGraph.createSmallGraph();
+		Graph<Integer> g = UndirectedGraph.createSmallGraph();
 		DepthFirstSearchCC cc = new DepthFirstSearchCC(g);
 		int numberOfComponents = cc.count();
 		

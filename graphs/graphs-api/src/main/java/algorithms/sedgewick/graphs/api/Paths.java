@@ -9,10 +9,10 @@ package algorithms.sedgewick.graphs.api;
  */
 public abstract class Paths {
 	
-	protected Graph g;
+	protected Graph<Integer> g;
 	protected int source;
 	
-	public Paths(Graph g, int source) {
+	public Paths(Graph<Integer> g, int source) {
 		this.g = g;
 		this.source = source;
 	}

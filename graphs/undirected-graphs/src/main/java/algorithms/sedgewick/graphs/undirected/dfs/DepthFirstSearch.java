@@ -16,7 +16,7 @@ public class DepthFirstSearch extends SingleSourceGraphSearch {
 	private boolean[] markedVertices;
 	private int count;
 	
-	public DepthFirstSearch(Graph g, int source) {
+	public DepthFirstSearch(Graph<Integer> g, int source) {
 		super(g, source);
 		markedVertices = new boolean[g.V()];
 		dfs(g, source);
@@ -32,17 +32,16 @@ public class DepthFirstSearch extends SingleSourceGraphSearch {
 		return count;
 	}
 	
-	private void dfs(Graph g, int v) {
+	private void dfs(Graph<Integer> g, int v) {
 		markedVertices[v] = true;
 		count++;
-		Iterable<Integer> adjList = g.adj(v);
-		for(int w : adjList) {
+		for(int w : g.adj(v)) {
 			if(!marked(w)) dfs(g, w);
 		}
 	}
 	
 	public static void main(String[] args) throws Exception {
-		Graph g = UndirectedGraph.createSmallGraph();
+		Graph<Integer> g = UndirectedGraph.createSmallGraph();
 		System.out.println(g);
 		int source = 0;
 		SingleSourceGraphSearch s = new DepthFirstSearch(g, source);

@@ -20,7 +20,7 @@ public class DepthFirstOrder {
 	private Queue<Integer> post;
 	private Stack<Integer> reversePost;
 	
-	public DepthFirstOrder(Digraph g) {
+	public DepthFirstOrder(Digraph<Integer> g) {
 		marked = new boolean[g.V()];
 		pre = new ArrayDeque();
 		post = new ArrayDeque();
@@ -33,7 +33,7 @@ public class DepthFirstOrder {
 		}		
 	}
 	
-	private void dfs(Digraph g, int v) {
+	private void dfs(Digraph<Integer> g, int v) {
 		marked[v] = true;
 		Iterable<Integer>adjList = g.adj(v);
 		pre.add(v);

@@ -16,10 +16,10 @@ import algorithms.sedgewick.graphs.directed.DirectedGraph;
  */
 public class DirectedDFS extends MultipleSourceGraphSearch {
 
-	private Graph g;
+	private Graph<Integer> g;
 	boolean[] marked;
 	
-	public DirectedDFS(Graph g, List<Integer> sources) {
+	public DirectedDFS(Graph<Integer> g, List<Integer> sources) {
 		super(g, sources);
 		marked = new boolean[g.V()];
 		for(int s : sources) {
@@ -29,7 +29,7 @@ public class DirectedDFS extends MultipleSourceGraphSearch {
 		}
 	}
 	
-	public DirectedDFS(Graph g, int source) {
+	public DirectedDFS(Graph<Integer> g, int source) {
 		super(g, source);
 		marked = new boolean[g.V()];
 		dfs(g, source);
@@ -40,10 +40,9 @@ public class DirectedDFS extends MultipleSourceGraphSearch {
 		return marked[v];
 	}
 	
-	private void dfs(Graph g, int v) {
+	private void dfs(Graph<Integer> g, int v) {
 		marked[v] = true;
-		Iterable<Integer> adjList = g.adj(v);
-		for(int w : adjList) {
+		for(int w :  g.adj(v)) {
 			if(!marked[w]) {
 				dfs(g, w);
 			}
@@ -51,7 +50,7 @@ public class DirectedDFS extends MultipleSourceGraphSearch {
 	}
 	
 	public static void main(String[] args) throws Exception {
-		Graph g = DirectedGraph.createSmallGraph();
+		Graph<Integer> g = DirectedGraph.createSmallGraph();
 		System.out.println(g);
 		int singleSource = 2;
 		List<Integer> multipleSources = ImmutableList.of(1, 2, 6);

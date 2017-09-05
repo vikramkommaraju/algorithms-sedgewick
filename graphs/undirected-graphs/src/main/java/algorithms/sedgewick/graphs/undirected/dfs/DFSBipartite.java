@@ -11,13 +11,13 @@ import algorithms.sedgewick.graphs.undirected.UndirectedGraph;
  */
 public class DFSBipartite {
 	
-	private Graph g;
+	private Graph<Integer> g;
 	private boolean[] marked;
 	private boolean[] color;
 	
 	boolean isBipartite;
 
-	public DFSBipartite(Graph g) {
+	public DFSBipartite(Graph<Integer> g) {
 		this.g = g;
 		
 		marked = new boolean[g.V()];
@@ -35,12 +35,11 @@ public class DFSBipartite {
 		return isBipartite;
 	}
 	
-	private void dfs(Graph g, int v) {
+	private void dfs(Graph<Integer> g, int v) {
 		marked[v] = true;
 		color[v] = true;
 		
-		Iterable<Integer> adj = g.adj(v);
-		for(int w : adj) {
+		for(int w : g.adj(v)) {
 			if(!marked[w]) {
 				color[w] = !color[v];
 				dfs(g, w);
@@ -53,7 +52,7 @@ public class DFSBipartite {
 	}
 	
 	public static void main(String[] args) throws Exception {
-		Graph g = UndirectedGraph.createSmallGraph();
+		Graph<Integer> g = UndirectedGraph.createSmallGraph();
 		DFSBipartite dfsBipartite = new DFSBipartite(g);
 		System.out.println(g);
 		System.out.println("Is the graph bipartite ? " + dfsBipartite.isBipartite());

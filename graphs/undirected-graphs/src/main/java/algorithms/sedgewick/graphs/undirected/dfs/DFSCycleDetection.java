@@ -11,11 +11,11 @@ import algorithms.sedgewick.graphs.undirected.UndirectedGraph;
  */
 public class DFSCycleDetection {
 	
-	Graph g;
+	Graph<Integer> g;
 	boolean[] marked;
 	boolean hasCycle;
 	
-	public DFSCycleDetection(Graph g) {
+	public DFSCycleDetection(Graph<Integer> g) {
 		this.g = g;
 		marked = new boolean[g.V()];
 		hasCycle = false;
@@ -31,10 +31,9 @@ public class DFSCycleDetection {
 		return true;
 	}
 	
-	private void dfs(Graph g, int v, int u) {
+	private void dfs(Graph<Integer> g, int v, int u) {
 		marked[v] = true;
-		Iterable<Integer> adj = g.adj(v);
-		for(int w : adj) {
+		for(int w : g.adj(v)) {
 			if(!marked[w]) {
 				dfs(g, w, v);
 			} else if( w != u) {
@@ -44,7 +43,7 @@ public class DFSCycleDetection {
 	}
 	
 	public static void main(String[] args) throws Exception {
-		Graph g = UndirectedGraph.createSmallGraph();
+		Graph<Integer> g = UndirectedGraph.createSmallGraph();
 		DFSCycleDetection dfsCycle = new DFSCycleDetection(g);
 		System.out.println(g);
 		System.out.println("Does graph have a cycle ? " + dfsCycle.hasCycle());

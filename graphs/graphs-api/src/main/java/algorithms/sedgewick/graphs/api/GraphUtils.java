@@ -9,16 +9,15 @@ package algorithms.sedgewick.graphs.api;
 public class GraphUtils {
 	
 	@SuppressWarnings("unused")
-	public static int degree(Graph g, int v) {
+	public static int degree(Graph<Integer> g, int v) {
 		int degree = 0;
-		Iterable<Integer> adjList = g.adj(v);
-		for(int w : adjList) {
+		for(int w : g.adj(v)) {
 			degree++;
 		}
 		return degree;
 	}
 	
-	public static int maxDegree(Graph g) {
+	public static int maxDegree(Graph<Integer> g) {
 		int max = 0;
 		for(int v=0; v<g.V(); v++) {
 			int degree = degree(g, v);
@@ -29,15 +28,14 @@ public class GraphUtils {
 		return max;
 	}
 	
-	public static int avgDegree(Graph g) {
+	public static int avgDegree(Graph<Integer> g) {
 		return 2*g.E() / g.V();
 	}
 	
-	public static int numberOfSelfLoops(Graph g) {
+	public static int numberOfSelfLoops(Graph<Integer> g) {
 		int count=0;
 		for(int v=0; v<g.V(); v++) {
-			Iterable<Integer> adjList = g.adj(v);
-			for(int w : adjList) {
+			for(int w : g.adj(v)) {
 				if(v==w) count++;
 			}
 		}

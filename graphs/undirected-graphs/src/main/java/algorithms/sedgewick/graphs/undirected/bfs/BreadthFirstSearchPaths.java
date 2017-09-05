@@ -19,7 +19,7 @@ public class BreadthFirstSearchPaths extends Paths {
 	private boolean marked[];
 	private int edgeTo[];
 	
-	public BreadthFirstSearchPaths(Graph g, int source) {
+	public BreadthFirstSearchPaths(Graph<Integer> g, int source) {
 		super(g, source);
 		marked = new boolean[g.V()];
 		edgeTo = new int[g.V()];
@@ -48,15 +48,14 @@ public class BreadthFirstSearchPaths extends Paths {
 		return path;
 	}
 	
-	private void bfs(Graph g, int source) {
+	private void bfs(Graph<Integer> g, int source) {
 		Queue<Integer> q = new ArrayDeque<Integer>();
 		marked[source] = true;
 		q.add(source);
 
 		while(!q.isEmpty()) {
 			int v = q.remove();
-			Iterable<Integer> adjList = g.adj(v);
-			for(int w : adjList) {
+			for(int w : g.adj(v)) {
 				if(!marked[w]) {
 					marked[w] = true;
 					edgeTo[w] = v; // We reached w from v
@@ -69,7 +68,7 @@ public class BreadthFirstSearchPaths extends Paths {
 	public static void main(String[] args) throws Exception {
 		int source = 3;
 		int sink = 6;
-		Graph g = UndirectedGraph.createSmallGraph();
+		Graph<Integer> g = UndirectedGraph.createSmallGraph();
 		Paths p = new BreadthFirstSearchPaths(g, source);
 		System.out.println("The graph is: " + g);
 		System.out.println("Is there a path from " + source + " to " + sink + " ? : " + p.hasPathTo(sink));

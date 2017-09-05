@@ -17,17 +17,16 @@ public class DepthFirstSearchPaths extends Paths {
 	private int[] edgeTo;
 	private boolean[] markedVertices;
 
-	public DepthFirstSearchPaths(Graph g, int source) {
+	public DepthFirstSearchPaths(Graph<Integer> g, int source) {
 		super(g, source);
 		markedVertices = new boolean[g.V()];
 		edgeTo = new int[g.V()];
 		dfs(g, source);
 	}
 
-	private void dfs(Graph g, int v) {
+	private void dfs(Graph<Integer> g, int v) {
 		markedVertices[v] = true;
-		Iterable<Integer> adjList = g.adj(v);
-		for (int w : adjList) {
+		for (int w : g.adj(v)) {
 			if (!isMarked(w)) {
 				edgeTo[w] = v; // We reached w from v
 				dfs(g, w);
@@ -64,7 +63,7 @@ public class DepthFirstSearchPaths extends Paths {
 	public static void main(String[] args) throws Exception {
 		int source = 0;
 		int sink = 5;
-		Graph g = UndirectedGraph.createSmallGraph();
+		Graph<Integer> g = UndirectedGraph.createSmallGraph();
 		Paths p = new DepthFirstSearchPaths(g, source);
 		System.out.println("The graph is: " + g);
 		System.out.println("Is there a path from " + source + " to " + sink + " ? : " + p.hasPathTo(sink));

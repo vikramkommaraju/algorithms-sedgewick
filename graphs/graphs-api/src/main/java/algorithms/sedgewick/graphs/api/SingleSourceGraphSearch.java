@@ -9,13 +9,13 @@ package algorithms.sedgewick.graphs.api;
  */
 public abstract class SingleSourceGraphSearch {
 
-	protected Graph g;
+	protected Graph<Integer> g;
 	protected int source;
 	
 	/**
 	 * Must pass in a reference to a {@link Graph} and a source vertex
 	 */
-	protected SingleSourceGraphSearch(Graph g, int source) {
+	protected SingleSourceGraphSearch(Graph<Integer> g, int source) {
 		this.g = g;
 		this.source = source;
 	}

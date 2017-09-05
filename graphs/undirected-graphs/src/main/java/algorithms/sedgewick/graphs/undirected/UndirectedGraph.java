@@ -101,7 +101,7 @@ public class UndirectedGraph implements Graph<Integer> {
 	}
 	
 	public static void main(String... args) throws Exception {
-		Graph g = UndirectedGraph.createSmallGraph();
+		Graph<Integer> g = UndirectedGraph.createSmallGraph();
 		System.out.println(g);
 		
 		int v = 11;

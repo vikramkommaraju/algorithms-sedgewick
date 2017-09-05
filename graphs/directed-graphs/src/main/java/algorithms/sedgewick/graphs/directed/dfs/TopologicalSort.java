@@ -12,7 +12,7 @@ public class TopologicalSort {
 	
 	private Iterable<Integer> order;
 	
-	public TopologicalSort(Digraph g) {
+	public TopologicalSort(Digraph<Integer> g) {
 		DirectedCycleDetection cycleFinder = new DirectedCycleDetection(g);
 		if(!cycleFinder.hasCycle()) {
 			DepthFirstOrder dfsOrder = new DepthFirstOrder(g);

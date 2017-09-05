@@ -70,8 +70,7 @@ public class DirectedGraph implements Digraph<Integer> {
 	public Digraph reverse() {
 		Digraph<Integer> reverseDiGraph = new DirectedGraph(numberOfVertices);
 		for(int i=0; i<numberOfVertices; i++) {
-			Iterable<Integer> adjList = adjacencyList[i];
-			for(int w : adjList) {
+			for(int w : adjacencyList[i]) {
 				reverseDiGraph.addEdge(w, i); // Add edge in reverse order
 			}
 		}
@@ -110,7 +109,7 @@ public class DirectedGraph implements Digraph<Integer> {
 	}
 	
 	public static void main(String[] args) throws Exception {
-		Graph g = DirectedGraph.createSmallGraph();
+		Graph<Integer> g = DirectedGraph.createSmallGraph();
 		System.out.println(g);
 		
 		int v = 11;

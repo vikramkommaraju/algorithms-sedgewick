@@ -17,7 +17,7 @@ public class DegreesOfSeparation {
 
 	public static void main(String[] args) throws Exception {
 		ISymbolGraph symGraph = SymbolGraph.createRoutesGraph();
-		Graph g = symGraph.G();
+		Graph<Integer> g = symGraph.G();
 
 		String sourceVertex = "JFK";
 		int sourceIndex = symGraph.index(sourceVertex);
