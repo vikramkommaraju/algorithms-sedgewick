@@ -104,7 +104,7 @@ public class DirectedGraph implements Digraph<Integer> {
 			int v = Integer.parseInt(edge.trim().split(" ")[0]);
 			int w = Integer.parseInt(edge.trim().split(" ")[1]);
 			
-			adjacencyList[v].add(0, w);
+			addEdge(v, w);
 		}
 	}
 	

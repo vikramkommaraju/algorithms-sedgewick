@@ -88,8 +88,7 @@ public class UndirectedGraph implements Graph<Integer> {
 			int v = Integer.parseInt(edge.split(" ")[0]);
 			int w = Integer.parseInt(edge.split(" ")[1]);
 			
-			adjacencyList[v].add(0, w);
-			adjacencyList[w].add(0, v);
+			addEdge(v, w);
 		}
 	}
 	
