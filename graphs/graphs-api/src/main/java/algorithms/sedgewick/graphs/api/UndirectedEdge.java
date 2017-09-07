@@ -5,7 +5,7 @@ package algorithms.sedgewick.graphs.api;
  *
  * @author Vikram Kommaraju
  */
-public interface Edge extends Comparable<Edge> {
+public interface UndirectedEdge extends Comparable<UndirectedEdge> {
 	
 	/**
 	 * Returns the weight of this edge

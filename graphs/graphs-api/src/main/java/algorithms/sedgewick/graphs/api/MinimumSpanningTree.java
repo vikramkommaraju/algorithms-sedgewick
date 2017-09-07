@@ -10,7 +10,7 @@ public interface MinimumSpanningTree {
 	/**
 	 * Returns all edges of the MST
 	 */
-	Iterable<Edge> edges();
+	Iterable<UndirectedEdge> edges();
 	
 	/**
 	 * Returns the total weight of the MST

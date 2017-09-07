@@ -1,19 +1,19 @@
 package algorithms.sedgewick.graphs.mst;
 
-import algorithms.sedgewick.graphs.api.Edge;
+import algorithms.sedgewick.graphs.api.UndirectedEdge;
 
 /**
- * Implementation of {@link Edge} API
+ * Implementation of {@link UndirectedEdge} API
  *
  * @author Vikram Kommaraju
  */
-public class WeightedEdge implements Edge {
+public class WeightedUndirectedEdge implements UndirectedEdge {
 
 	private final int v;
 	private final int w;
 	private final double weight;
 
-	public WeightedEdge(int v, int w, double weight) {
+	public WeightedUndirectedEdge(int v, int w, double weight) {
 		this.v = v;
 		this.w = w;
 		this.weight = weight;
@@ -37,7 +37,7 @@ public class WeightedEdge implements Edge {
 		}
 	}
 
-	public int compareTo(Edge that) {
+	public int compareTo(UndirectedEdge that) {
 		if (this.weight() < that.weight()) {
 			return -1;
 		} else if (this.weight() > that.weight()) {
@@ -48,7 +48,7 @@ public class WeightedEdge implements Edge {
 	}
 
 	public String toString() {
-		return String.format("[ %d-->%d %.2f ]", v, w, weight);
+		return String.format("[ %d--%d %.2f ]", v, w, weight);
 	}
 
 }

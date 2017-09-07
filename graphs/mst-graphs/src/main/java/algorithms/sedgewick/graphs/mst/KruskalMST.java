@@ -4,7 +4,7 @@ import java.util.ArrayDeque;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
-import algorithms.sedgewick.graphs.api.Edge;
+import algorithms.sedgewick.graphs.api.UndirectedEdge;
 import algorithms.sedgewick.graphs.api.MinimumSpanningTree;
 import algorithms.sedgewick.graphs.api.WeightedGraph;
 import algorithms.sedgewick.utils.UF;
@@ -17,21 +17,21 @@ import algorithms.sedgewick.utils.UF;
  */
 public class KruskalMST implements MinimumSpanningTree {
 
-	private Queue<Edge> mstEdges;
+	private Queue<UndirectedEdge> mstEdges;
 	private double totalWeight;
 
 	public KruskalMST(WeightedGraph g) {
-		mstEdges = new ArrayDeque<Edge>();
+		mstEdges = new ArrayDeque<UndirectedEdge>();
 		UF uf = new UF(g.V());
 
 		// Add all edges to PQ
-		PriorityQueue<Edge> pQueue = new PriorityQueue<Edge>(g.E());
-		for (Edge e : g.edges()) {
+		PriorityQueue<UndirectedEdge> pQueue = new PriorityQueue<UndirectedEdge>(g.E());
+		for (UndirectedEdge e : g.edges()) {
 			pQueue.add(e);
 		}
 
 		while (!pQueue.isEmpty() && mstEdges.size() < g.V() - 1) {
-			Edge e = pQueue.remove();
+			UndirectedEdge e = pQueue.remove();
 			int v = e.either();
 			int w = e.other(v);
 
@@ -44,7 +44,7 @@ public class KruskalMST implements MinimumSpanningTree {
 		}
 	}
 
-	public Iterable<Edge> edges() {
+	public Iterable<UndirectedEdge> edges() {
 		return mstEdges;
 	}
 
@@ -53,7 +53,7 @@ public class KruskalMST implements MinimumSpanningTree {
 	}
 
 	public static void main(String[] args) throws Exception {
-		EdgeWeightedGraph g = EdgeWeightedGraph.createSmallGraph();
+		WeightedGraph g = EdgeWeightedGraph.createSmallGraph();
 		System.out.println(g);
 
 		MinimumSpanningTree mst = new KruskalMST(g);

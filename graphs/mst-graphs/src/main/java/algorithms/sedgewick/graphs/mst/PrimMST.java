@@ -3,7 +3,7 @@ package algorithms.sedgewick.graphs.mst;
 import java.util.ArrayDeque;
 import java.util.Queue;
 
-import algorithms.sedgewick.graphs.api.Edge;
+import algorithms.sedgewick.graphs.api.UndirectedEdge;
 import algorithms.sedgewick.graphs.api.MinimumSpanningTree;
 import algorithms.sedgewick.graphs.api.WeightedGraph;
 import algorithms.sedgewick.utils.IndexMinPQ;
@@ -16,13 +16,13 @@ import algorithms.sedgewick.utils.IndexMinPQ;
 public class PrimMST implements MinimumSpanningTree {
 
 	private boolean[] marked;
-	private Edge[] edgeTo;
+	private UndirectedEdge[] edgeTo;
 	private double[] distTo;
 	private IndexMinPQ<Double> pQueue;
 
 	public PrimMST(WeightedGraph g) {
 		marked = new boolean[g.V()];
-		edgeTo = new Edge[g.V()];
+		edgeTo = new UndirectedEdge[g.V()];
 		distTo = new double[g.V()];
 		pQueue = new IndexMinPQ<Double>(g.V());
 
@@ -41,7 +41,7 @@ public class PrimMST implements MinimumSpanningTree {
 
 	private void visit(WeightedGraph g, int v) {
 		marked[v] = true;
-		for (Edge e : g.adj(v)) {
+		for (UndirectedEdge e : g.adj(v)) {
 			int w = e.other(v);
 
 			if (marked[w]) {
@@ -60,10 +60,10 @@ public class PrimMST implements MinimumSpanningTree {
 		}
 	}
 
-	public Iterable<Edge> edges() {
-		Queue<Edge> mstEdges = new ArrayDeque<Edge>();
+	public Iterable<UndirectedEdge> edges() {
+		Queue<UndirectedEdge> mstEdges = new ArrayDeque<UndirectedEdge>();
 		for (int v = 0; v < edgeTo.length; v++) {
-			Edge e = edgeTo[v];
+			UndirectedEdge e = edgeTo[v];
 			if (e != null) { // We need this check because edgeTo[0] is null since 0 is itself the root
 				mstEdges.add(e);
 			}
@@ -73,14 +73,14 @@ public class PrimMST implements MinimumSpanningTree {
 
 	public double weight() {
 		double totalWeight = 0.0;
-		for (Edge e : edges()) {
+		for (UndirectedEdge e : edges()) {
 			totalWeight += e.weight();
 		}
 		return totalWeight;
 	}
 
 	public static void main(String[] args) throws Exception {
-		EdgeWeightedGraph g = EdgeWeightedGraph.createSmallGraph();
+		WeightedGraph g = EdgeWeightedGraph.createSmallGraph();
 		System.out.println(g);
 
 		MinimumSpanningTree mst = new PrimMST(g);

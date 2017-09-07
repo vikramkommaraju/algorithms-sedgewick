@@ -4,7 +4,7 @@ import java.util.ArrayDeque;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
-import algorithms.sedgewick.graphs.api.Edge;
+import algorithms.sedgewick.graphs.api.UndirectedEdge;
 import algorithms.sedgewick.graphs.api.MinimumSpanningTree;
 import algorithms.sedgewick.graphs.api.WeightedGraph;
 
@@ -16,20 +16,20 @@ import algorithms.sedgewick.graphs.api.WeightedGraph;
 public class LazyPrimMST implements MinimumSpanningTree {
 
 	private boolean marked[]; // MST Vertices
-	private PriorityQueue<Edge> pQueue;
-	private Queue<Edge> mstEdges; // MST edges
+	private PriorityQueue<UndirectedEdge> pQueue;
+	private Queue<UndirectedEdge> mstEdges; // MST edges
 
 	LazyPrimMST(WeightedGraph g) {
 		marked = new boolean[g.V()];
-		pQueue = new PriorityQueue<Edge>();
-		mstEdges = new ArrayDeque<Edge>();
+		pQueue = new PriorityQueue<UndirectedEdge>();
+		mstEdges = new ArrayDeque<UndirectedEdge>();
 
 		visit(g, 0); // Assume G is connected. So you can start with any vertex
 
 		while (!pQueue.isEmpty()) {
 
 			// Get the lowest weight edge in the pQueue
-			Edge e = pQueue.remove();
+			UndirectedEdge e = pQueue.remove();
 			int v = e.either();
 			int w = e.other(v);
 
@@ -55,27 +55,27 @@ public class LazyPrimMST implements MinimumSpanningTree {
 	private void visit(WeightedGraph g, int v) {
 		// Mark v and add to pQueue all edges from v to unmarked vertices
 		marked[v] = true;
-		for (Edge e : g.adj(v)) {
+		for (UndirectedEdge e : g.adj(v)) {
 			if (!marked[e.other(v)]) {
 				pQueue.add(e);
 			}
 		}
 	}
 
-	public Iterable<Edge> edges() {
+	public Iterable<UndirectedEdge> edges() {
 		return mstEdges;
 	}
 
 	public double weight() {
 		double totalWeight = 0;
-		for (Edge e : mstEdges) {
+		for (UndirectedEdge e : mstEdges) {
 			totalWeight += e.weight();
 		}
 		return totalWeight;
 	}
 
 	public static void main(String[] args) throws Exception {
-		EdgeWeightedGraph g = EdgeWeightedGraph.createSmallGraph();
+		WeightedGraph g = EdgeWeightedGraph.createSmallGraph();
 		System.out.println(g);
 
 		MinimumSpanningTree mst = new LazyPrimMST(g);

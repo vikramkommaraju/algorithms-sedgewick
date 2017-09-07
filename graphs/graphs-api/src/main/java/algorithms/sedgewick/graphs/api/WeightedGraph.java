@@ -18,17 +18,17 @@ public interface WeightedGraph {
 	int E();
 
 	/**
-	 * Add an {@link Edge} e to the Graph
+	 * Add an {@link UndirectedEdge} e to the Graph
 	 */
-	void addEdge(Edge e);
+	void addEdge(UndirectedEdge e);
 
 	/**
 	 * Edges incident on vertex v
 	 */
-	Iterable<Edge> adj(int v);
+	Iterable<UndirectedEdge> adj(int v);
 
 	/**
 	 * All edges of this Graph
 	 */
-	Iterable<Edge> edges();
+	Iterable<UndirectedEdge> edges();
 }

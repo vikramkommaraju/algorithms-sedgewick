@@ -33,7 +33,6 @@ public class UndirectedGraph implements Graph<Integer> {
 	private UndirectedGraph(String inputFilePath) throws Exception {
 		GraphFileInput inputGraph = FileUtils.getInputDataFromFile(inputFilePath);
 		numberOfVertices = inputGraph.getNumberOfVertices();
-		numberOfEdges = inputGraph.getNumberOfEdges();
 		initializeAdjacencyList();
 		addAllEdgesFromFile(inputGraph);	
 	}

@@ -22,5 +22,22 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
+    
+    <dependency>
+      <groupId>algorithms.sedgewick.fundamentals</groupId>
+      <artifactId>fundamentals-api</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>algorithms.sedgewick.graphs</groupId>
+      <artifactId>graphs-api</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>algorithms.sedgewick</groupId>
+      <artifactId>utils</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+    </dependency>
+    
   </dependencies>
 </project>

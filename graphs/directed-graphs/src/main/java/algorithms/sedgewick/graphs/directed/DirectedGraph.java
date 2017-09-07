@@ -33,7 +33,6 @@ public class DirectedGraph implements Digraph<Integer> {
 	private DirectedGraph(String inputFilePath) throws Exception {
 		GraphFileInput inputGraph = FileUtils.getInputDataFromFile(inputFilePath);
 		numberOfVertices = inputGraph.getNumberOfVertices();
-		numberOfEdges = inputGraph.getNumberOfEdges();
 		initializeAdjacencyList();
 		addAllEdgesFromFile(inputGraph);	
 	}
