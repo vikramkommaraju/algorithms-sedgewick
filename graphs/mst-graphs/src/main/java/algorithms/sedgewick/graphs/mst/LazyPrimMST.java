@@ -49,9 +49,7 @@ public class LazyPrimMST implements MinimumSpanningTree {
 			if (!marked[w]) {
 				visit(g, w);
 			}
-
 		}
-
 	}
 
 	private void visit(WeightedGraph g, int v) {
@@ -75,11 +73,11 @@ public class LazyPrimMST implements MinimumSpanningTree {
 		}
 		return totalWeight;
 	}
-	
+
 	public static void main(String[] args) throws Exception {
 		EdgeWeightedGraph g = EdgeWeightedGraph.createSmallGraph();
 		System.out.println(g);
-		
+
 		MinimumSpanningTree mst = new LazyPrimMST(g);
 		System.out.println(mst.edges());
 		System.out.println(mst.weight());
