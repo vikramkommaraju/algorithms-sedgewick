@@ -19,16 +19,16 @@ public abstract class ShortestPath {
 	/**
 	 * Distance from source to vertex v. INFINITY if no path from source to v
 	 */
-	abstract double distTo(int v);
+	public abstract double distTo(int v);
 
 	/**
 	 * Is there a path from source to v
 	 */
-	abstract boolean hasPathTo(int v);
+	public abstract boolean hasPathTo(int v);
 
 	/**
 	 * Path from source to v. Null if none
 	 */
-	abstract Iterable<DirectedEdge> path(int v);
+	public abstract Iterable<DirectedEdge> path(int v);
 
 }
