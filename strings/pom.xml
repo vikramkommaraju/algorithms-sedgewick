@@ -26,5 +26,6 @@
   <packaging>pom</packaging>
   <modules>
   	<module>strings-api</module>
+  	<module>string-sorts</module>
   </modules>
 </project>
