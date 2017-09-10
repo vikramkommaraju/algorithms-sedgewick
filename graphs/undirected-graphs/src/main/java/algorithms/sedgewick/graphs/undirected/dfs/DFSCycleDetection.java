@@ -1,5 +1,6 @@
 package algorithms.sedgewick.graphs.undirected.dfs;
 
+import algorithms.sedgewick.graphs.api.CycleDetection;
 import algorithms.sedgewick.graphs.api.Graph;
 import algorithms.sedgewick.graphs.undirected.UndirectedGraph;
 
@@ -9,7 +10,7 @@ import algorithms.sedgewick.graphs.undirected.UndirectedGraph;
  * 
  * @author Vikram Kommaraju
  */
-public class DFSCycleDetection {
+public class DFSCycleDetection implements CycleDetection {
 	
 	Graph<Integer> g;
 	boolean[] marked;
@@ -47,6 +48,10 @@ public class DFSCycleDetection {
 		DFSCycleDetection dfsCycle = new DFSCycleDetection(g);
 		System.out.println(g);
 		System.out.println("Does graph have a cycle ? " + dfsCycle.hasCycle());
+	}
+
+	public Iterable<Integer> cycle() {
+		return null;
 	}
 	
 

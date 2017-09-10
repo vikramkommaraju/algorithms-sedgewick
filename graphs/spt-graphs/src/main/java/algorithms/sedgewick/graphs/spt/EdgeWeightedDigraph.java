@@ -22,6 +22,8 @@ public class EdgeWeightedDigraph implements WeightedDigraph {
 	private List<DirectedEdge>[] adjacencyList;
 	
 	private static final String TINY_EWDGRAPH_INPUT = "src/main/resources/tinyEWDG.txt";
+	private static final String TINY_EWDAG_INPUT = "src/main/resources/tinyEWDAG.txt";
+	private static final String TINY_EWDNC_INPUT = "src/main/resources/tinyEWDnc.txt";
 	
 	public EdgeWeightedDigraph(int V) {
 		this.numberOfVertices = V;
@@ -38,6 +40,14 @@ public class EdgeWeightedDigraph implements WeightedDigraph {
 	
 	public static WeightedDigraph createSmallGraph() throws Exception {
 		return new EdgeWeightedDigraph(TINY_EWDGRAPH_INPUT);
+	}
+	
+	public static WeightedDigraph createSmallDAG() throws Exception {
+		return new EdgeWeightedDigraph(TINY_EWDAG_INPUT);
+	}
+	
+	public static WeightedDigraph createNegativeCycleDigraph() throws Exception {
+		return new EdgeWeightedDigraph(TINY_EWDNC_INPUT);
 	}
 	
 	public int V() {

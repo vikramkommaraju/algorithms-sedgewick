@@ -1,8 +1,8 @@
 package algorithms.sedgewick.graphs.directed.dfs;
 
-import java.util.List;
 import java.util.Stack;
 
+import algorithms.sedgewick.graphs.api.CycleDetection;
 import algorithms.sedgewick.graphs.api.Digraph;
 
 /**
@@ -11,7 +11,7 @@ import algorithms.sedgewick.graphs.api.Digraph;
  *
  * @author Vikram Kommaraju
  */
-public class DirectedCycleDetection {
+public class DirectedCycleDetection implements CycleDetection {
 	
 	private Digraph<Integer> g;
 	private boolean[] marked;
