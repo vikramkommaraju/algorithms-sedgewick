@@ -27,5 +27,6 @@
   	
   	<module>graphs</module>
   	<module>utils</module>
+  	<module>strings</module>
   </modules>
 </project>
